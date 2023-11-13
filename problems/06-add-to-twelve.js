@@ -5,14 +5,27 @@ return false.
 
 Examples:
 
-addToTwelve([1, 3, 4, 7, 5]); // true
-addToTwelve([1, 3, 4, 7, 6]); // false
+***********************************************************************/
+
+// base case: array length is < or = 2
+
+function addToTwelve(array){
+  if(array[0] + array[1] == 12){
+    return true
+  }
+  if(array.length <= 1){
+    return false
+  }
+  if(array[0] + array[1] != 12){
+    array.shift()
+    return addToTwelve(array)
+  }
+}
+console.log(addToTwelve([1, 3, 4, 7, 5])); // true
+console.log(addToTwelve([1, 3, 4, 7, 6])); // false
 addToTwelve([1, 11, 4, 7, 6]); // true
 addToTwelve([1, 12, 4, 7, 6]); // false
 addToTwelve([1]); // false
-***********************************************************************/
-
-// your code here
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {

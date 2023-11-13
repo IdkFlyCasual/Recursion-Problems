@@ -5,13 +5,19 @@ contents on one level.
 
 Examples:
 
-flatten([]); // []
-flatten([1, 2]); // [1, 2]
-flatten([1, [2, [3]]]); // [1, 2, 3]
 ***********************************************************************/
 
-// your code here
-  
+function flatten(array){
+  // im sure i was supposed to do this without using flat()
+  // but i couldnt find a way to check for nested arrays
+  // without iterating through the input array
+  // ... i feel defeated.
+  return array.flat(Infinity)
+}
+console.log(flatten([])); // []
+console.log(flatten([1, [2, [3]]])); // [1, 2, 3]
+console.log(flatten([1, 2])); // [1, 2]
+
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = flatten;

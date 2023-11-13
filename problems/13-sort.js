@@ -15,14 +15,31 @@ There are many ways to accomplish this task but here's a simple algorithm:
 5. Recursively call `sort()` with updated `sorted` and `nums`
 
 Examples:
+console.log(sort([4,1,6,3,1,7])); // [1, 1, 3, 4, 6, 7]
+console.log(sort([0, 1, -3])); // [-3, 0, 1]
+console.log(sort([])); // []
 
-sort([4,1,6,3,1,7]); // [1, 1, 3, 4, 6, 7]
-sort([0, 1, -3]); // [-3, 0, 1]
-sort([]); // []
 ***********************************************************************/
-
 function sort(nums, sorted = []) {
-  // your code here
+  if (nums.length === 0) {
+    return sorted;
+  }
+
+  if (sorted.length === 0) {
+    sorted.push(nums[0]);
+  } else if (nums[0] >= sorted[sorted.length - 1]) {
+    sorted.push(nums[0]);
+  } else if (nums[0] <= sorted[0]) {
+    sorted.unshift(nums[0]);
+  } else {
+    for (let i = 1; i < sorted.length; i++) {
+      if (nums[0] <= sorted[i]) {
+        sorted.splice(i, 0, nums[0]);
+        break;
+      }
+    }
+  }
+  return sort(nums.slice(1), sorted);
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
