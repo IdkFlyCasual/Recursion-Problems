@@ -16,6 +16,7 @@ fibonacci(1); // 1
 fibonacci(2); // 1
 fibonacci(3); // 2
 fibonacci(4); // 3
+console.log(fibonacci(10)); // 55
 ***********************************************************************/
 function fibonacci(n) {
   if (n === 1 || n === 2) {
@@ -25,7 +26,6 @@ function fibonacci(n) {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-console.log(fibonacci(10)); // 55
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/

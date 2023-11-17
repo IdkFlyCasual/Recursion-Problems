@@ -4,6 +4,11 @@ are two adjacent numbers in the input array that can sum up to 12. Otherwise,
 return false.
 
 Examples:
+console.log(addToTwelve([1, 3, 4, 7, 5])); // true
+console.log(addToTwelve([1, 3, 4, 7, 6])); // false
+addToTwelve([1, 11, 4, 7, 6]); // true
+addToTwelve([1, 12, 4, 7, 6]); // false
+addToTwelve([1]); // false
 
 ***********************************************************************/
 
@@ -21,11 +26,6 @@ function addToTwelve(array){
     return addToTwelve(array)
   }
 }
-console.log(addToTwelve([1, 3, 4, 7, 5])); // true
-console.log(addToTwelve([1, 3, 4, 7, 6])); // false
-addToTwelve([1, 11, 4, 7, 6]); // true
-addToTwelve([1, 12, 4, 7, 6]); // false
-addToTwelve([1]); // false
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {

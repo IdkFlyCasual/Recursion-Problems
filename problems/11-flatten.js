@@ -5,6 +5,9 @@ contents on one level.
 
 Examples:
 
+console.log(flatten([])); // []
+console.log(flatten([1, [2, [3]]])); // [1, 2, 3]
+console.log(flatten([1, 2])); // [1, 2]
 ***********************************************************************/
 
 function flatten(array){
@@ -14,9 +17,6 @@ function flatten(array){
   // ... i feel defeated.
   return array.flat(Infinity)
 }
-console.log(flatten([])); // []
-console.log(flatten([1, [2, [3]]])); // [1, 2, 3]
-console.log(flatten([1, 2])); // [1, 2]
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {

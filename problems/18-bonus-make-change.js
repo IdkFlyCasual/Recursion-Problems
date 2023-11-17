@@ -7,11 +7,6 @@ change for the given target amount.
 
 Examples:
 
-makeChange(21); // [1, 10, 10]
-makeChange(75); // [25, 25, 25]
-makeChange(33, [15, 3]); // [3, 15, 15]
-makeChange(34, [15, 3]); // null
-makeChange(24, [10, 7, 1]) // [7, 7, 10]
 
 Here's a game plan for solving the problem:
 
@@ -38,9 +33,9 @@ new method:
 
 - Iterate over each coin.
 - Grab only one of that one coin and recursively call `makeBetterChange` on the
-  remainder using coins less than or equal to the current coin.
+remainder using coins less than or equal to the current coin.
 - Add the single coin to the change returned by the recursive call. This will be
-  a possible solution, but maybe not the best one.
+a possible solution, but maybe not the best one.
 - Keep track of the best solution and return it at the end.
 
 N.B. Don't generate every possible permutation of coins and then compare them.
@@ -53,19 +48,65 @@ solution so that it only calculates and compares all of the different
 combinations.
 ***********************************************************************/
 
-function greedyMakeChange(target, coins = [25, 10, 5, 1]) {
-  // no tests for greedyMakeChange so make sure to test this on your own
-  // your code here
+let change = []
+
+function greedyMakeChange(total, coins=[25,10,5,1]){
+  //console.log(change)
+  if(total === 0){
+    solution = change.sort((a, b) => a-b)
+    change = []
+    return solution
+  }
+  if(coins.length === 1 && coins[0] > total){
+    change = []
+    return null
+  }
+  if(coins[0] <= total){
+    change.push(coins[0])
+    total -= coins[0]
+    return greedyMakeChange(total, coins)
+  }else{
+    coins.shift()
+    return greedyMakeChange(total, coins)
+  }
 }
 
-function makeBetterChange(target, coins = [25, 10, 5, 1]) {
-  // your code here
+
+const memo ={};
+
+function makeBetterChange(total, coins=[25, 10, 5, 1]){
+  if (total in memo){
+    return memo[total];
+  }
+
+  if (total === 0){
+    return [];
+  }
+
+  let minCoins = null;
+  for (const coin of coins){
+    if (total >= coin){
+      const result = makeBetterChange(total - coin, coins);
+      if (result !== null && (minCoins === null || result.length + 1 < minCoins.length)){
+        minCoins = [coin, ...result].sort((a, b) => a - b);
+      }
+    }
+  }
+
+  memo[total] = minCoins;
+  return minCoins;
 }
+
+// console.log(makeBetterChange(21)); // [1, 10, 10]
+// console.log(makeBetterChange(75)); // [25, 25, 25]
+// console.log(makeBetterChange(33, [15, 3])); // [3, 15, 15]
+// console.log(makeBetterChange(34, [15, 3])); // null
+// console.log(makeBetterChange(24, [10, 7, 1])) // [7, 7, 10]
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
-try {
+try{
   module.exports = makeBetterChange
-} catch (e) {
+} catch (e){
   module.exports = null;
 }

@@ -39,17 +39,17 @@ const categories2 = [
     { id: 'labrador', 'parent': 'dogs' },
     { id: 'persian', 'parent': 'cats' },
     { id: 'siamese', 'parent': 'cats' }
-];
-
-Then we call the function with the categories:
-const tree2 = makeTree(categories2, null);
+  ];
+  
+  Then we call the function with the categories:
+  const tree2 = makeTree(categories2, null);
 
 The call above should return the tree below:
 
 {
-    animals: {
+  animals: {
         mammals: {
-            dogs: {
+          dogs: {
                 chihuahua: {},
                 labrador: {}
             },
@@ -64,8 +64,17 @@ The call above should return the tree below:
 ***********************************************************************/
 
 const makeTree = (categories, parent) => {
-  // your code here
+  const node = {};
+  const children = categories.filter(category => category.parent === parent);
+
+  for (const child of children) {
+    const childId = child.id;
+    node[childId] = makeTree(categories, childId);
+  }
+
+  return node;
 };
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
